@@ -6,6 +6,7 @@ class OrderingsController < ApplicationController
   end
   
   def order
+    
     order_machine = OrderMachine.order(session[:order_id], session[:user_id], params[:menu_item_id],  params[:quantity] )
                                      
     if order_machine.valid? && order_machine.ordering
