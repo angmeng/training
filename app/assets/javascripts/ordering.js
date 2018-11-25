@@ -1,4 +1,6 @@
 // modify something
+// writing some logic
+
 function outputOrderItems() {
     let order_items_section = document.getElementById("order_items") 
     let url = "api/orders"
