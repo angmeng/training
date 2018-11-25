@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id             :bigint(8)        not null, primary key
+#  ordering_date  :date
+#  customer_id    :bigint(8)
+#  remark         :text(65535)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  is_checked_out :boolean          default(FALSE)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ordering_date: 2018-09-30
+  customer: one
+  remark: MyText
+
+two:
+  ordering_date: 2018-09-30
+  customer: two
+  remark: MyText

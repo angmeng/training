@@ -1,0 +1,87 @@
+<div data-turbolinks="false">
+  <table>
+    <tr>
+      <th>Category</th>
+    </tr>
+    <tr>
+        <td>
+          <%= link_to "All", "#", class: "filteringByCategory"  %>
+        </td>
+    </tr>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= link_to category.name, "#", class: "filteringByCategory", data: { category_id: category.id  }  %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+    
+    <hr></hr>
+    <h2>Menu Item</h2>
+    
+    <table>
+        <tr>
+          <thead>
+            <th>Name</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Action</th>
+          </thead>
+        </tr>
+        <tbody id="menu_items">
+          <%# @menu_items.each do |item| %>
+          <%#= form_tag "/orderings/order" do %>
+            <%#= hidden_field_tag "menu_item_id", item.id %>
+            <!--<tr>
+              <td><%#= item.name %></td>
+              <td><%#= item.unit_price %></td>
+              <td><%#= number_field_tag "quantity" %></td>
+              <td><%#= submit_tag "Add to Cart" %></td>
+            </tr>-->
+          <%# end %>
+        <%# end %>
+        </tbody>
+        
+    </table>
+ 
+
+  <br><br>
+  
+  <h2>Order Items</h2>
+  <table>
+    <thead>
+      <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Unit Price</th>
+          <th>Total</th>
+      </tr>
+    </thead>
+    <tbody id="order_items">
+      
+    </tbody>
+      
+      <!--<#% if @order.present? %>-->
+      <!--  <#% sum_total = 0.0 %>-->
+      <!--  <#% @order.order_items.each do |order_item| %>-->
+      <!--  <#% sum_total += order_item.menu_item.unit_price * order_item.quantity %>-->
+      <!--  <tr>-->
+      <!--      <td><#%= order_item.menu_item.name %></td>-->
+      <!--      <td><#%= order_item.quantity %></td>-->
+      <!--      <td><#%= order_item.menu_item.unit_price %></td>-->
+      <!--      <td><#%= order_item.menu_item.unit_price * order_item.quantity %></td>-->
+    
+      <!--  </tr>-->
+      <!--  <#% end %>-->
+      <!--<#% end %>-->
+      <!--<tr>
+          <td colspan="4"> Total Sum : RM <%#= sum_total %></td>
+      </tr>-->
+  </table>
+  
+    <div>
+        <% if session[:order_id].present?  %>
+          <%= link_to "Checkout ", checkout_orderings_path %>
+        <% end %>
+    </div>
+

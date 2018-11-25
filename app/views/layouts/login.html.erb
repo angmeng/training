@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Restaurant</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <h2>Login layout</h2>
+    <% if flash[:alert].present? %>
+      <p class="alert_message">
+        <%= flash[:alert] %>
+      </p>
+    <% end %>
+   
+    <% if flash[:notice].present? %>
+      <p class="notice_message">
+        <%= flash[:notice] %>
+      </p>
+    <% end %>
+   
+   <p>
+     <%= link_to "login", "/login" %>
+   </p>
+   
+    <%= yield %>
+  </body>
+</html>

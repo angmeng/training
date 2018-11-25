@@ -1,0 +1,48 @@
+<h1>Checkout page</h1>
+
+<table style="width: 100%;border: 1px solid">
+    <tr>
+        <th>Order ID</th>
+        <th>Order Date</th>
+    </tr>
+    <tr>
+        <td style="text-align: center"><%= @order.id %></td>
+        <td style="text-align: center"><%= @order.ordering_date %></td>
+    </tr>
+</table>
+
+<h4>Order Items</h4>
+<%= form_tag update_all_order_order_items_path(@order), method: :patch do %>
+  <table style="width: 100%;border: 1px solid">
+    <tr>
+        <th>Menu item name</th>
+        <th>Menu item unit price</th>
+        <th>order quantity</th>
+        <th>Sub total</th>
+        <th>Actions</th>
+    </tr>
+    <% sum_total = 0.0 %>
+    <% @order.order_items.each do |order_item| %>
+      <% sub_total = order_item.menu_item.unit_price * order_item.quantity %>
+      <% sum_total += sub_total %>
+      <tr>
+        <td style="text-align: center"><%= order_item.menu_item.name %></td>
+        <td style="text-align: center"><%= order_item.menu_item.unit_price %></td>
+        <td style="text-align: center"><%= text_field_tag "order_item[#{order_item.id}][quantity]", order_item.quantity %></td>
+        <td style="text-align: center"><%= sub_total %></td>
+        <td>
+          <%= link_to "-", order_order_item_path(@order, order_item), data: { method: :delete } %>
+          <%= link_to "+", order_order_item_path(@order, order_item), data: { method: :put }  %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+        <td colspan="3"></td>
+        <td>Sum Total : <%= sum_total %></td>
+    </tr>
+  </table>
+  <div style="float:right">
+      <%= submit_tag "Update Order" %>
+      <%= link_to "Make Payment", new_payment_path %>
+  </div>
+<% end %>

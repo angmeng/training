@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Restaurant</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+     <div id="flash_messages">
+         <% if flash[:alert].present? %>
+          <p class="alert_message" id="alert_message">
+            <%= flash[:alert] %>
+          </p>
+         <% end %>
+   
+         <% if flash[:notice].present? %>
+           <p class="notice_message" id="notice_message">
+             <%= flash[:notice] %>
+           </p>
+         <% end %>
+         
+     </div>
+    
+   
+   <h2>User Name : <%= display_name %>
+    </h2>
+   
+   <p>
+     <% if session[:user_id].present? %>
+       <%= link_to "Logout", "/logout", data: { method: :delete } %>
+     <% end %>
+   </p>
+   
+    <%= yield %>
+  </body>
+</html>
