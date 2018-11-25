@@ -1,7 +1,6 @@
 class OrderItemsController < ApplicationController
   before_action :authenticate_user
-
-
+ #order_items_checking
   def destroy
     order = Order.find params[:order_id]
     order_item = order.order_items.find params[:id]
@@ -22,7 +21,6 @@ class OrderItemsController < ApplicationController
     redirect_to checkout_orderings_path
   end
   
-  
   def update_all
        # "order_item" => { "2"=>{"quantity"=>"2"}, "3"=>{"quantity"=>"4"} }
     params[:order_item].each do |order_item_id, quantity_params|
@@ -34,6 +32,5 @@ class OrderItemsController < ApplicationController
     flash[:notice]  = "You have updated your order"
     redirect_to  checkout_orderings_path
   end
-
 
 end
