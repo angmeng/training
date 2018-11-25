@@ -13,11 +13,23 @@ class OrderingsController < ApplicationController
       flash[:notice] = "you have just order #{order_machine.menu_item.name}"
     else
       flash[:alert] = "You need a valid quantity"
+
+    if order_machine.valid?                                 
+      if order_machine.ordering
+        session[:order_id] = order_machine.order.id
+        flash[:notice] = "you have just order #{order_machine.menu_item.name}"
+      else
+        flash[:alert] = "You need a valid quantity"
+      end
+
     end
     
     redirect_to action: :index
-  end
-  
+    end
+
+    if order_machine.ordering
+        session[:order_id] = order_machine.order.id
+
   def checkout
     @order = Order.find(session[:order_id])
     if @order.order_items.blank?
@@ -26,5 +38,4 @@ class OrderingsController < ApplicationController
     end
       
   end
-
-end
+    end
