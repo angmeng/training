@@ -5,6 +5,7 @@ class OrderingsController < ApplicationController
     @categories = Category.order("name DESC")
   end
   
+  
   def order
     order_machine = OrderMachine.order(session[:order_id], session[:user_id], params[:menu_item_id],  params[:quantity] )
                                      
