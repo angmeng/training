@@ -1,4 +1,3 @@
-#orderings controller
 class OrderingsController < ApplicationController
   before_action :authenticate_user, except: [ :index ]
   
@@ -10,8 +9,7 @@ class OrderingsController < ApplicationController
     
     order_machine = OrderMachine.order(session[:order_id], session[:user_id], params[:menu_item_id],  params[:quantity] )
                                      
-    if order_machine.valid? 
-      #&& order_machine.ordering
+    if order_machine.valid? && order_machine.ordering
       session[:order_id] = order_machine.order.id
       flash[:notice] = "you have just order #{order_machine.menu_item.name}"
     else
