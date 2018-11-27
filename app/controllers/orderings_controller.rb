@@ -22,9 +22,6 @@ class OrderingsController < ApplicationController
     redirect_to action: :index
   end
 
-    if order_machine.ordering
-        session[:order_id] = order_machine.order.id
-
   def checkout
     @order = Order.find(session[:order_id])
     if @order.order_items.blank?
@@ -33,4 +30,4 @@ class OrderingsController < ApplicationController
     end
       
   end
-    end
+end
