@@ -4,6 +4,8 @@ class OrderingsController < ApplicationController
   def index
     @categories = Category.order("name DESC")
   end
+
+  
   
   #check order machine valid or not
   def order
