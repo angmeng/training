@@ -4,7 +4,7 @@ class OrderingsController < ApplicationController
   def index
     @categories = Category.order("name DESC")
   end
-  
+
   def order
 
     
